@@ -1,0 +1,315 @@
+﻿.not-displayed {
+    display: none;
+}
+
+form {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+#zip-code-input {
+    font-size: 25px;
+}
+
+#get-weather-btn {
+    font-size: 22px;
+}
+
+#title {
+    font-size: 16px;
+}
+
+#summary {
+    font-size: 35px;
+}
+
+    #summary img {
+        float: right;
+    }
+
+#error-msg {
+    text-align: center;
+    margin-top: 50%;
+    font-weight: bold;
+}
+
+.ui-bar-inherit.ui-header.header {
+    background-color: #3388cc;
+    border-color: #3388cc;
+    color: #ffffff;
+    text-shadow: 0 1px 0 #005599;
+}
+
+.forma {
+    padding-top: 100px;
+    align-items: center;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+}
+
+.dugmici {
+    padding-top: 50px;
+}
+
+input {
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+.bodyCustom {
+    background-image: url('../../../www/css/images/street3.jpg');
+}
+
+oboji {
+    color: darkgreen;
+    background-color: gainsboro;
+    font-size: large;
+}
+
+.page-wrap {
+    min-height: 100%;
+    overflow: auto;
+    width: 100%;
+    /* equal to footer height */
+    margin-bottom: -50px;
+}
+
+    .page-wrap:after {
+        content: "";
+        display: block;
+    }
+
+    .site-footer, .page-wrap:after {
+        height: 50px;
+    }
+
+.site-footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background: #ecf0f1;
+    border-top: solid 2px;
+    border-color: #3b5998;
+}
+
+    .site-footer a {
+        color: rgb(34,34,34);
+    }
+
+        .site-footer a :hover {
+            color: #3b5998;
+        }
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+.event-container {
+    border: 2px solid;
+    border-color: #3b5998;
+    width: 90%;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #888888;
+    height: 61px;
+    background-color: #3b5998;
+    margin-bottom: 10px;
+}
+
+.event-date-container {
+    float: left;
+    width: 30%;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 0px;
+    margin: 0px;
+    margin-top: 1px;
+    height: 55px;
+}
+
+.event-date-red-container {
+    background-color: #e74c3c;
+    height: 18px;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 5px 5px 0px 0px;
+}
+
+    .event-date-red-container p {
+        text-align: center;
+        vertical-align: middle;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 12pt;
+    }
+
+.event-date-white-container {
+    background-color: white;
+    height: 32px;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 0px 0px 5px 5px;
+    display: table;
+}
+
+    .event-date-white-container p {
+        text-align: center;
+        vertical-align: middle;
+        font-size: 19pt;
+        font-family: 'Open Sans', sans-serif;
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+
+.event-text-container {
+    float: left;
+    width: 70%;
+    margin: 2px 0px 0px 0px;
+}
+
+    .event-text-container h4 {
+        font-size: 16pt;
+        margin-top: -1px;
+    }
+
+    .event-text-container p {
+        font-size: 9pt;
+    }
+
+.header {
+    background-color: #ecf0f1;
+    height: 55px;
+    margin-bottom: 10px;
+    display: table;
+    width: 100%;
+}
+
+    .header h3 {
+        color: #3b5998;
+        align-items: center;
+        display: table-cell;
+        vertical-align: middle;
+        font-size: 18pt;
+    }
+
+.btn-footer-menu {
+    font-size: 12pt;
+}
+
+.center-block {
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+}
+
+.input-date-container {
+    width: 60%;
+    float: left;
+    padding: 0;
+    padding-right: 5px;
+}
+
+.input-time-container {
+    width: 40%;
+    float: left;
+    padding: 0;
+}
+
+.picture-div {
+    background-image: url("../../../www/images/cordova.png");
+    height: 50px;
+    background-repeat: no-repeat;
+    background-size: 42px 42px;
+    background-position: center;
+    position: relative;
+    float: left;
+    display: block;
+}
+
+.container-profile {
+    background-color: #bdc3c7;
+    height: 200px;
+}
+
+.container-profile-picture {
+    height: 180px;
+    width: 150px;
+    margin-top: 10px;
+    background-color: #ecf0f1;
+    float: left;
+}
+
+.container-first-last-name {
+    width: 100%;
+    float: right;
+}
+/*Media queries*/
+
+@media screen and (min-width: 480px) {
+    .event-container {
+        height: 80px;
+    }
+
+    .event-date-container {
+        height: 76px;
+        width: 120px;
+    }
+
+    .event-date-red-container {
+        height: 23px;
+    }
+
+    .event-date-white-container {
+        height: 50px;
+    }
+
+    .event-date-red-container p {
+        font-size: 14pt;
+        vertical-align: bottom;
+    }
+
+    .event-date-white-container p {
+        font-size: 25pt;
+        vertical-align: middle;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .event-container {
+        height: 100px;
+        margin-bottom: 10px;
+    }
+
+    .event-date-container {
+        height: 86px;
+        width: 120px;
+    }
+
+    .event-date-red-container {
+        height: 33px;
+    }
+
+    .event-date-white-container {
+        height: 60px;
+    }
+
+    .event-date-red-container p {
+        font-size: 18pt;
+        vertical-align: text-bottom;
+    }
+
+    .event-date-white-container p {
+        font-size: 32pt;
+        vertical-align: middle;
+    }
+
+    .btn-footer-menu {
+        font-size: 16pt;
+    }
+}

@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <!--
+        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
+        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap:
+https://fonts.googleapis.com  https://ssl.gstatic.com 'unsafe-eval'; style-src 'self'
+'unsafe-inline'; media-src *">
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link href="css/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/index.css" rel="stylesheet" />
+    <link href="css/bootstrap-social.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <title>Basket</title>
+</head>
+<body class="bodyCustom">
+    <div class="page-wrap">
+        <div class="container header">
+            <h3>Search</h3>
+        </div>
+
+        <div class="container">
+            <input type="text" class="form-control" id="search" placeholder="Search">
+        </div>
+
+    </div>
+
+    <footer class="site-footer" style="display:table;">
+        <div class="row" style="display:table-cell; vertical-align:middle;">
+            <div class="col-md-2" style="width:20%; float:left;">
+                <div class="center-block">
+                    <a id="addGame" class="btn btn-lg btn-footer-menu">
+                        <span class="fa fa-calendar-plus-o "> </span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2" style="width:20%; float:left; ">
+                <div class="center-block">
+                    <a id="addCourt" class="btn btn-lg btn-footer-menu">
+                        <span class="fa fa-globe"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2" style="width:20%; float:left;">
+                <div class="center-block">
+                    <a id="clickUpcoming" class="btn btn-lg btn-footer-menu">
+                        <span class="fa fa-clock-o"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2" style="width:20%; float:left;">
+                <div class="center-block">
+                    <a id="clickSearch" class="btn btn-lg btn-footer-menu">
+                        <span class="fa fa-search"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2" style="width:20%; float:left; ">
+                <div class="center-block">
+                    <a id="clickProfile" class="btn btn-lg btn-footer-menu">
+                        <span class="fa fa-user"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="scripts/jquery-1.9.1.min.js"></script>
+    <script src="scripts/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script src="scripts/search.js"></script>
+</body>
+</html>

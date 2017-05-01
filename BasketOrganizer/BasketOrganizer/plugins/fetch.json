@@ -30,5 +30,15 @@
         },
         "is_top_level": false,
         "variables": {}
+    },
+    "cordova-plugin-googlemaps": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-googlemaps"
+        },
+        "is_top_level": true,
+        "variables": {
+            "API_KEY_FOR_ANDROID": "AIzaSyAZeYKjOrY3fhuqCIAVb_5HZot6oPIKo5E"
+        }
     }
 }

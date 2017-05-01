@@ -15,7 +15,22 @@
         // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
         var db = window.sqlitePlugin.openDatabase({ name: 'nova.db', location: 'default' });
 
-        
+        var div = document.getElementById("map_canvas");
+
+        // Initialize the map view
+        var map = plugin.google.maps.Map.getMap(div);
+
+        // Wait until the map is ready status.
+        map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
+
+        function onMapReady() {
+            var button = document.getElementById("button");
+            button.addEventListener("click", onBtnClicked, false);
+        }
+
+        function onBtnClicked() {
+            map.showDialog();
+        }
 
     };
 
@@ -27,6 +42,10 @@
         // TODO: This application has been reactivated. Restore application state here.
     };
 })();
+
+
+
+
 
 // Transaction error callback
 //

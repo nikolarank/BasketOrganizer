@@ -15,11 +15,8 @@
         // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
         var db = window.sqlitePlugin.openDatabase({ name: 'nova.db', location: 'default' });
 
-        navigator.camera.getPicture(onSuccess, onFail, {
-            quality: 25,
-            destinationType: Camera.DestinationType.DATA_URL
-        });
-
+        document.getElementById("cameraTakePicture").addEventListener
+            ("click", cameraTakePicture);
     };
 
     function onPause() {
@@ -30,6 +27,22 @@
         // TODO: This application has been reactivated. Restore application state here.
     };
 })();
+
+function cameraTakePicture() {
+    navigator.camera.getPicture(onSuccess, onFail, {
+        quality: 50,
+        destinationType: Camera.DestinationType.DATA_URL
+    });
+
+    function onSuccess(imageData) {
+        var image = document.getElementById('myImage');
+        image.src = "data:image/jpeg;base64," + imageData;
+    }
+
+    function onFail(message) {
+        alert('Failed because: ' + message);
+    }
+}
 
 // Transaction error callback
 //

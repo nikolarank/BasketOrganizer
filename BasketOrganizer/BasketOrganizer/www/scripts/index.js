@@ -22,6 +22,15 @@
             tx.executeSql('INSERT INTO EVENT (Datum,Vreme, Teren, Mesta) VALUES ("30, jun", "23:50", "Skolsko", "10")');
             tx.executeSql('INSERT INTO EVENT (Datum,Vreme, Teren, Mesta) VALUES ("01, avgust", "23:50", "Skolsko", "10")');
         }, errorCB, successCB);
+
+        db.transaction(function (tx) {
+            tx.executeSql('INSERT INTO TEREN (Ime, Lat, Lon, Slika) VALUES ("Skolkso", "43.16", "21.85", "")');
+            tx.executeSql('INSERT INTO TEREN (Ime, Lat, Lon, Slika) VALUES ("Popovo", "44.16", "22.85", "")');
+            tx.executeSql('INSERT INTO TEREN (Ime, Lat, Lon, Slika) VALUES ("Ispred zgrade", "43.10", "21.40", "")');
+            tx.executeSql('INSERT INTO TEREN (Ime, Lat, Lon, Slika) VALUES ("Skolkso", "45.26", "22.18", "")');
+            tx.executeSql('INSERT INTO TEREN (Ime, Lat, Lon, Slika) VALUES ("Popovo", "41.16", "25.85", "")');
+            
+        }, errorCB, successCB);
     };
 
     function onPause() {
@@ -39,7 +48,7 @@ document.getElementById("signin").onclick = function () {
 
 function populateDB(tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS EVENT (id INTEGER PRIMARY KEY AUTOINCREMENT, Datum TEXT, Vreme TEXT, Teren TEXT, Mesta TEXT)');
-    //tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id INTEGER PRIMARY KEY AUTOINCREMENT, name,number)');
+    tx.executeSql('CREATE TABLE IF NOT EXISTS TEREN (id INTEGER PRIMARY KEY AUTOINCREMENT, Ime TEXT, Lat TEXT, Lon TEXT, Slika TEXT)');
 }
 
 // Transaction error callback

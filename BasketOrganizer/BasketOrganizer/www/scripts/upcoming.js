@@ -29,12 +29,6 @@
 
 // Transaction error callback
 //
-function errorCB(err) {
-    alert("Error processing SQL: " + err.code);
-}
-
-
-
 function queryDB(tx) {
     tx.executeSql('SELECT * FROM EVENT', [], querySuccess, errorCB);
 }

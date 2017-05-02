@@ -156,7 +156,7 @@ function errorCB(err) {
     alert("Error processing SQL: " + err.code);
 }
 
-function querySuccess(tx, results) {
+/*function querySuccess(tx, results) {
     $('#lista').empty();
 
     var len = results.rows.length;
@@ -177,6 +177,30 @@ function querySuccess(tx, results) {
     }
 
     
+}*/
+
+function querySuccess(tx, results) {
+    $('#tabela').empty();
+    document.getElementById("list-container").style.display = "block";
+    var len = results.rows.length;
+    for (var i = 0; i < len; i++) {
+        var opcija = document.createElement("tr");
+        opcija.id = "opcija" + i;
+        opcija.value = results.rows.item(i).Ime;
+        opcija.innerHTML = "<td>"+results.rows.item(i).Ime+"</td>";
+        var roditelj = document.getElementById("tabela");
+        roditelj.appendChild(opcija);
+
+        var el = document.getElementById("opcija" + i);
+        el.onclick = function () {
+            document.getElementById("court").value = this.innerHTML;
+            $('#tabela').empty();
+            document.getElementById("list-container").style.display = "none";
+        }
+
+    }
+
+
 }
 
 

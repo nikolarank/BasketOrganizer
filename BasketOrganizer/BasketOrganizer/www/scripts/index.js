@@ -31,6 +31,12 @@
             tx.executeSql('INSERT INTO TEREN (Ime, Lat, Lon, Slika) VALUES ("Popovo", "41.16", "25.85", "")');
             
         }, errorCB, successCB);
+
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        ctx.font = "30px Arial";
+        ctx.fillText("Basket", 55, 65);
+        ctx.fillText("Organiser", 34.5, 90);
     };
 
     function onPause() {

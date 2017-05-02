@@ -40,5 +40,13 @@
         "variables": {
             "API_KEY_FOR_ANDROID": "AIzaSyAZeYKjOrY3fhuqCIAVb_5HZot6oPIKo5E"
         }
+    },
+    "cordova-plugin-vibration": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-vibration"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

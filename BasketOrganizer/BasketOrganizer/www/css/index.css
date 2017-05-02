@@ -84,3 +84,12 @@ oboji {
 html, body {
     height: 100%;
 }
+
+.container-canvas {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding-bottom: 15px;
+}

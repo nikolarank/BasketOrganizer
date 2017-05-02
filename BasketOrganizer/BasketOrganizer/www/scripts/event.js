@@ -46,9 +46,11 @@ function markItem(ime, lat, lng) {
             var Datum = document.getElementById("date").value;
             if (Datum != null)
                 db.transaction(insertDB, errorCB, successCB);
-            else {
+            else { 
 
             }
+            var time = 3000;
+            navigator.vibrate(time);
         }
 
         var div = document.getElementById("map_canvas");
@@ -181,7 +183,7 @@ function errorCB(err) {
 
 function querySuccess(tx, results) {
     $('#tabela').empty();
-    document.getElementById("list-container").style.display = "block";
+    /*document.getElementById("list-container").style.display = "block";*/
     var len = results.rows.length;
     for (var i = 0; i < len; i++) {
         var opcija = document.createElement("tr");
@@ -195,7 +197,7 @@ function querySuccess(tx, results) {
         el.onclick = function () {
             document.getElementById("court").value = this.innerHTML;
             $('#tabela').empty();
-            document.getElementById("list-container").style.display = "none";
+            /*document.getElementById("list-container").style.display = "none";*/
         }
 
     }

@@ -2,6 +2,8 @@
 // http://go.microsoft.com/fwlink/?LinkID=397704
 // To debug code on page load in cordova-simulate or on Android devices/emulators: launch your app, set breakpoints, 
 // and then run "window.location.reload()" in the JavaScript Console.
+var markerpos;
+
 (function () {
     "use strict";
 
@@ -17,6 +19,67 @@
 
         document.getElementById("cameraTakePicture").addEventListener
             ("click", cameraTakePicture);
+
+
+        document.getElementById("Insert").onclick = function () {
+             db.transaction(insertDB, errorCB, successCB);
+        }
+
+        var div = document.getElementById("map_canvas");
+
+        var GOOGLE = { "lat": 43.19, "lng": 21.54 };
+        markerpos = GOOGLE;
+        // Initialize the map view
+        var map = plugin.google.maps.Map.getMap(div,
+            {
+                'camera': {
+                    'latLng': GOOGLE,
+                    'zoom': 5
+                }
+            }
+        );
+
+        // Wait until the map is ready status.
+        map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
+
+        function onMapReady() {
+            var button = document.getElementById("button");
+            button.addEventListener("click", onBtnClicked, false);
+
+            map.addMarker({
+                'position': GOOGLE,
+                'title': "Prevuci do terena",
+                'draggable': true
+            }, function (marker) {
+
+                marker.addEventListener(plugin.google.maps.event.MARKER_DRAG_END, function (marker) {
+                    marker.getPosition(function (latLng) {
+                        markerpos = latLng;
+                        marker.setTitle(latLng.toUrlValue());
+                        marker.showInfoWindow();
+                    });
+                });
+            });
+
+            map.getMyLocation(function (location) {
+                var msg = ["Current your location:\n",
+                    "latitude:" + location.latLng.lat,
+                    "longitude:" + location.latLng.lng].join("\n");
+
+                map.addMarker({
+                    'position': location.latLng,
+                    'title': msg,
+                    'draggable': true
+                }, function (marker) {
+                    marker.showInfoWindow();
+                });
+            });
+
+        }
+
+        function onBtnClicked() {
+            map.showDialog();
+        }
     };
 
     function onPause() {
@@ -27,6 +90,27 @@
         // TODO: This application has been reactivated. Restore application state here.
     };
 })();
+
+function insertDB(tx) {
+    var name = document.getElementById("courtName").value;
+    var Slika = "";
+    if (name != null) {
+        tx.executeSql('INSERT INTO TEREN (Ime, Lat, Lon, Slika) VALUES ("' + name
+            + '","' + markerpos.lat + '","' + markerpos.lng + '","' + Slika + '")');
+    }
+}
+
+function successCB() {
+    alert("Successfully created court");
+    document.getElementById("courtName").value = "";
+}
+
+// Transaction error callback
+//
+function errorCB(err) {
+    alert("Error processing SQL: " + err.code);
+}
+
 
 function cameraTakePicture() {
     navigator.camera.getPicture(onSuccess, onFail, {
@@ -46,14 +130,6 @@ function cameraTakePicture() {
 
 // Transaction error callback
 //
-function errorCB(err) {
-    alert("Error processing SQL: " + err.code);
-}
-
-function errorCB(err) {
-    alert("Error processing SQL: " + err.code);
-}
-
 document.getElementById("addGame").onclick = function () {
     location.href = "AddEventPage.html";
 }

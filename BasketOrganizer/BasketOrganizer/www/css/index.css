@@ -45,10 +45,10 @@ form {
     padding-top: 50px;
 }
 
-input {
+/*input {
     margin-left: 50%;
     transform: translateX(-50%);
-}
+}*/
 
 .bodyCustom {
     background-image: url('../../../www/css/images/street3.jpg');

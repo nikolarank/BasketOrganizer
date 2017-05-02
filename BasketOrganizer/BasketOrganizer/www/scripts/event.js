@@ -47,6 +47,8 @@ function markItem(ime, lat, lng) {
             else {
 
             }
+            var time = 3000;
+            navigator.vibrate(time);
         }
 
         var div = document.getElementById("map_canvas");

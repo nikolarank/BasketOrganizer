@@ -38,26 +38,22 @@ function markItem(ime, lat, lng) {
             tx.executeSql("SELECT * FROM TEREN", [], selectSuccess, errorCB);
         }
 
-        document.getElementById("court").onkeyup = function () {
-            db.transaction(searchQueryDB, errorCB, querySuccess);
-        }
+
 
         document.getElementById("Insert").onclick = function () {
             var Datum = document.getElementById("date").value;
             if (Datum != null)
                 db.transaction(insertDB, errorCB, successCB);
-            else { 
+            else {
 
             }
-            var time = 3000;
-            navigator.vibrate(time);
         }
 
         var div = document.getElementById("map_canvas");
 
         db.transaction(searchQueryDB, errorCB, querySuccess);
 
-        var GOOGLE = { "lat": 43.19, "lng" : 21.54}; 
+        var GOOGLE = { "lat": 43.19, "lng": 21.54 };
         // Initialize the map view
         var map = plugin.google.maps.Map.getMap(div,
             {
@@ -74,6 +70,10 @@ function markItem(ime, lat, lng) {
         function onMapReady() {
             var button = document.getElementById("button");
             button.addEventListener("click", onBtnClicked, false);
+
+            document.getElementById("court").onkeyup = function () {
+                db.transaction(searchQueryDB, errorCB, querySuccess);
+            }
 
             map.getMyLocation(function (location) {
                 var msg = ["Current your location:\n",
@@ -95,15 +95,28 @@ function markItem(ime, lat, lng) {
 
             function addMarkers(data, callback) {
                 var markers = [];
+
                 function onMarkerAdded(marker) {
                     markers.push(marker);
+                    marker.addEventListener(plugin.google.maps.event.INFO_CLICK, function () {
+                        alert("Marker is clicked");
+                    });
                     if (markers.length === data.length) {
                         callback(markers);
                     }
                 }
-                data.forEach(function (markerOptions) {
+
+                data.forEach(function (element) {
+                    var markerOptions =
+                        {
+                            'position': element.latLng,
+                            'title': element.ime,
+                            'draggable': true,
+                            'icon': 'blue'
+                        };
                     map.addMarker(markerOptions, onMarkerAdded);
                 });
+
             }
 
         }
@@ -112,7 +125,7 @@ function markItem(ime, lat, lng) {
             map.showDialog();
         }
 
-        
+
 
     };
 
@@ -183,24 +196,31 @@ function errorCB(err) {
 
 function querySuccess(tx, results) {
     $('#tabela').empty();
-    /*document.getElementById("list-container").style.display = "block";*/
+    var roditelj = document.getElementById("tabela");
+    //document.getElementById("list-container").style.display = "block";
     var len = results.rows.length;
     for (var i = 0; i < len; i++) {
         var opcija = document.createElement("tr");
         opcija.id = "opcija" + i;
-        opcija.value = results.rows.item(i).Ime;
-        opcija.innerHTML = "<td>"+results.rows.item(i).Ime+"</td>";
-        var roditelj = document.getElementById("tabela");
+        //opcija.value = results.rows.item(i).Ime;
+        var td = document.createElement("td");
+
+        td.innerHTML = results.rows.item(i).Ime;
+        opcija.appendChild(td);
+
         roditelj.appendChild(opcija);
 
         var el = document.getElementById("opcija" + i);
         el.onclick = function () {
             document.getElementById("court").value = this.innerHTML;
             $('#tabela').empty();
-            /*document.getElementById("list-container").style.display = "none";*/
+            //document.getElementById("list-container").style.display = "none";
         }
 
     }
+
+    var txt = roditelj.innerHTML;
+    document.getElementById("tabela").innerHTML = txt;
 
 
 }

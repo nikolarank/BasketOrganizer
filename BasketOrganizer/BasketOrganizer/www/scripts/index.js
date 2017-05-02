@@ -36,7 +36,7 @@
         var ctx = c.getContext("2d");
         ctx.font = "30px Arial";
         ctx.fillText("Basket", 55, 65);
-        ctx.fillText("Organiser", 34.5, 90);
+        ctx.fillText("Organizer", 34.5, 90);
     };
 
     function onPause() {

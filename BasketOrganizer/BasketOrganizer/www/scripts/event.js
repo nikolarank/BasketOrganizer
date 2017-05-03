@@ -101,7 +101,7 @@ function markItem(ime, lat, lng) {
                 function onMarkerAdded(marker) {
                     markers.push(marker);
                     marker.addEventListener(plugin.google.maps.event.INFO_CLICK, function () {
-                        alert("Marker is clicked");
+                        alert(marker.getTitle());
                     });
                     if (markers.length === data.length) {
                         callback(markers);
@@ -114,7 +114,8 @@ function markItem(ime, lat, lng) {
                             'position': element.latLng,
                             'title': element.ime,
                             'draggable': true,
-                            'icon': 'blue'
+                            'icon': 'blue',
+                            'animation': plugin.google.maps.Animation.BOUNCE
                         };
                     map.addMarker(markerOptions, onMarkerAdded);
                 });

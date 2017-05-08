@@ -234,14 +234,14 @@ body {
 
 .container-profile {
     background-color: #bdc3c7;
-    height: 200px;
+    height: 220px;
 }
 
 .container-profile-picture {
     height: 180px;
     width: 150px;
     margin-top: 10px;
-    background-color: #ecf0f1;
+    //background-color: #ecf0f1;
     float: left;
 }
 
@@ -253,16 +253,15 @@ body {
 
 @media screen and (min-width: 480px) {
     .event-container {
-        height: 80px;
+        height: 100px;
     }
 
     .event-date-container {
         height: 76px;
-        width: 120px;
     }
 
     .event-date-red-container {
-        height: 23px;
+        height: 30px;
     }
 
     .event-date-white-container {
@@ -288,7 +287,6 @@ body {
 
     .event-date-container {
         height: 86px;
-        width: 120px;
     }
 
     .event-date-red-container {

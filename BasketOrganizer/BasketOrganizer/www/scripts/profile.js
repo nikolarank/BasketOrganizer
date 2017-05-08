@@ -15,7 +15,25 @@
         // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
         var db = window.sqlitePlugin.openDatabase({ name: 'nova.db', location: 'default' });
 
-
+        document.getElementById("first_name").innerHTML = localStorage.first_name;
+        document.getElementById("last_name").innerHTML = localStorage.last_name;
+        document.getElementById("email").innerHTML = localStorage.email;
+        document.getElementById("gender").innerHTML = localStorage.gender;
+        
+        if (localStorage.hometown !== "undefined") {
+            document.getElementById("hometown").innerHTML = localStorage.hometown;
+        }
+        else {
+            document.getElementById("hometown").innerHTML = "";
+        }
+        if (localStorage.birthday !== "undefined") {
+            document.getElementById("birthday").innerHTML = localStorage.birthday;
+        }
+        else {
+            document.getElementById("birthday").innerHTML = "";
+        }
+        document.getElementById("picture").src = localStorage.picture;
+        document.getElementById("cover").style.background = localStorage.cover;
 
     };
 

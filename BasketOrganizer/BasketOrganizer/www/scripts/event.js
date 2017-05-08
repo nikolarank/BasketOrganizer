@@ -4,6 +4,9 @@
 // and then run "window.location.reload()" in the JavaScript Console.
 
 var data = [];
+var Court = "";
+var loaded = 0;
+var set_location = 1;
 
 function markItem(ime, lat, lng) {
     this.ime = ime;
@@ -22,6 +25,8 @@ function markItem(ime, lat, lng) {
 
         // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
         var db = window.sqlitePlugin.openDatabase({ name: 'nova.db', location: 'default' });
+
+        
         db.transaction(searchDB, errorCB, selectSuccess);
 
         function selectSuccess(tx, results) {
@@ -42,90 +47,131 @@ function markItem(ime, lat, lng) {
 
         document.getElementById("Insert").onclick = function () {
             var Datum = document.getElementById("date").value;
-            if (Datum != null)
+            var Vreme = document.getElementById("time").value;
+
+            if (Datum !== 'udefined' && Vreme !== 'undefined') {
                 db.transaction(insertDB, errorCB, successCB);
-            else {
+                //vibration
+                var time = 3000;
+                navigator.vibrate(time);
+                //notification
+                var date = new Date(Datum);
+                var niz = Vreme.split(":");
+                
+                date.setMinutes(parseInt(niz[1]));
+                date.setSeconds(0);
+                var sati = parseInt(niz[0]);
+                date.setHours(sati);
+                var a = date.toISOString();
+
+                var not_time = date.getTime();
+
+                var sad = new Date();
+
+                var diff = (niz[0] - sad.getHours() - 1) * 60 * 60 * 1000 + (niz[1] - sad.getMinutes()) * 60 * 1000; 
+                var now = new Date().getTime(),
+                    time = new Date(now + diff);
+
+                cordova.plugins.notification.local.schedule({
+                    text: "Game reminder " + Vreme,
+                    at: time,
+                    led: "FF0000"
+                });
 
             }
-            var time = 3000;
-            navigator.vibrate(time);
         }
 
         var div = document.getElementById("map_canvas");
 
-        db.transaction(searchQueryDB, errorCB, querySuccess);
+        //db.transaction(searchQueryDB, errorCB, querySuccess);
 
-        var GOOGLE = { "lat": 43.19, "lng": 21.54 };
+        //var GOOGLE = { "lat": 43.19, "lng": 21.54 };
         // Initialize the map view
-        var map = plugin.google.maps.Map.getMap(div,
-            {
-                'camera': {
-                    'latLng': GOOGLE,
-                    'zoom': 5
-                }
-            }
-        );
 
-        // Wait until the map is ready status.
-        map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
 
-        function onMapReady() {
-            var button = document.getElementById("button");
-            button.addEventListener("click", onBtnClicked, false);
+        var Latitude = undefined;
+        var Longitude = undefined;
 
-            document.getElementById("court").onkeyup = function () {
-                db.transaction(searchQueryDB, errorCB, querySuccess);
-            }
+        // Get geo coordinates
 
-            map.getMyLocation(function (location) {
-                var msg = ["Current your location:\n",
-                    "latitude:" + location.latLng.lat,
-                    "longitude:" + location.latLng.lng].join("\n");
+        navigator.geolocation.getCurrentPosition
+            (onMapSuccess, onMapError, { enableHighAccuracy: true });
 
-                map.addMarker({
-                    'position': location.latLng,
-                    'title': msg,
-                    'draggable': true
-                }, function (marker) {
-                    marker.showInfoWindow();
-                });
-            });
+        function onMapSuccess(position) {
 
-            addMarkers(data, function (markers) {
-                markers[markers.length - 1].showInfoWindow();
-            });
+            Latitude = position.coords.latitude;
+            Longitude = position.coords.longitude;
 
-            function addMarkers(data, callback) {
-                var markers = [];
+            //getMap(Latitude, Longitude);
+            var pos = { "lat": Latitude, "lng": Longitude };
 
-                function onMarkerAdded(marker) {
-                    markers.push(marker);
-                    marker.addEventListener(plugin.google.maps.event.INFO_CLICK, function () {
-                        alert(marker.getTitle());
-                    });
-                    if (markers.length === data.length) {
-                        callback(markers);
+            var map2 = plugin.google.maps.Map.getMap(div,
+                {
+                    'camera': {
+                        'latLng': pos,
+                        'zoom': 13
                     }
                 }
+            );
+            // Wait until the map is ready status.
+            map2.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
 
-                data.forEach(function (element) {
-                    var markerOptions =
-                        {
-                            'position': element.latLng,
-                            'title': element.ime,
-                            'draggable': true,
-                            'icon': 'blue',
-                            'animation': plugin.google.maps.Animation.BOUNCE
-                        };
-                    map.addMarker(markerOptions, onMarkerAdded);
+            function onMapReady() {
+                map2.clear();
+
+                var button = document.getElementById("button");
+                button.addEventListener("click", onBtnClicked, false);
+
+                
+                    map2.addMarker({
+                        'position': pos,
+                        'title': "Your location",
+                        'draggable': false
+                    }, function (marker) {
+                        marker.showInfoWindow();
+                        });
+                
+                
+                addMarkers(data, function (markers) {
+                    markers[markers.length - 1].showInfoWindow();
                 });
 
-            }
+                function addMarkers(data, callback) {
+                    var markers = [];
 
+                    function onMarkerAdded(marker) {
+                        markers.push(marker);
+                        marker.addEventListener(plugin.google.maps.event.INFO_CLICK, function () {
+                            Court = marker.getTitle();
+                        });
+                        if (markers.length === data.length) {
+                            callback(markers);
+                        }
+                    }
+
+                    data.forEach(function (element) {
+                        var markerOptions =
+                            {
+                                'position': element.latLng,
+                                'title': element.ime,
+                                'draggable': false,
+                                'icon': 'blue',
+                                'animation': plugin.google.maps.Animation.BOUNCE
+                            };
+                        map2.addMarker(markerOptions, onMarkerAdded);
+                    });
+
+                }
+
+            }
+        }
+
+        function onMapError() {
+            markerpos = { "lat": 43.19, "lng": 21.54 };
         }
 
         function onBtnClicked() {
-            map.showDialog();
+            map2.showDialog();
         }
 
 
@@ -146,11 +192,10 @@ function insertDB(tx) {
     var Datum = document.getElementById("date").value;
     var Vreme = document.getElementById("time").value;
     var Igraca = document.getElementById("noplayers").value;
-    var Teren = document.getElementById("court").value;
 
-    if (Datum != null && Vreme != null && Igraca != null && Teren != null) {
+    if (Datum !== 'undefined' && Vreme !== 'undefined' && Igraca !== 'undefined' && Court !== 'undefined') {
         tx.executeSql('INSERT INTO EVENT (Datum, Vreme, Teren, Mesta) VALUES ("' + Datum
-            + '","' + Vreme + '","' + Teren + '","' + Igraca + '")');
+            + '","' + Vreme + '","' + Court + '","' + Igraca + '")');
     }
 }
 
@@ -158,7 +203,7 @@ function successCB() {
     alert("Successfully created event");
     document.getElementById("date").value = "";
     document.getElementById("time").value = "";
-    document.getElementById("noplayers") = "";
+    document.getElementById("noplayers") = "Number of players";
     document.getElementById("court") = "";
 }
 

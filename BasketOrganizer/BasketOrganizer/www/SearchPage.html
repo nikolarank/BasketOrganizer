@@ -14,7 +14,6 @@ https://fonts.googleapis.com  https://ssl.gstatic.com 'unsafe-eval'; style-src '
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-    <link href="css/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/index.css" rel="stylesheet" />
     <link href="css/bootstrap-social.css" rel="stylesheet" />
@@ -22,14 +21,34 @@ https://fonts.googleapis.com  https://ssl.gstatic.com 'unsafe-eval'; style-src '
     <title>Basket</title>
 </head>
 <body class="bodyCustom">
-    <div class="page-wrap">
+    <div style="color: #3b5998;" class="page-wrap">
         <div class="container header">
             <h3>Search</h3>
         </div>
 
-        <div class="container">
-            <input type="text" class="form-control" id="search" placeholder="Search">
+        <div style="width:100%" class="container">
+            <h3 style="display: inline-block; width: 29%;">City</h3>
+            <div style="display:inline-block; width: 69%;">
+                <input type="text" class="form-control" id="geocoder_input" placeholder="Belgrade">
+            </div>
+       </div>
+
+        <div style="width:100%" class="container">
+            <h3 style="display: inline-block; width: 29%;">Distance</h3>
+            <div style="display:inline-block; width: 69%;">
+                <input type="number" class="form-control" id="kilometers" placeholder="km">
+            </div>
         </div>
+
+        <div style="margin-top: 15px; width:100%" class="container">
+            <button style="display: inline-block; width: 100%;" id="search" class="fa fa-search btn btn-lg btn-success" aria-hidden="true"> Search</button>
+        </div>
+
+        <div class="container" style="width:100%; padding-top:15px; padding-left:25px; padding-right:25px;">
+
+            <div style="width:100%;height:400px; float:left; display:inline-block" id="map_canvas"></div>
+        </div>
+
 
     </div>
 

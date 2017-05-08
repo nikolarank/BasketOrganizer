@@ -9,7 +9,7 @@
   <engine name="ios" spec="4.2.0" />
   <engine name="windows" spec="4.4.2" />
   <content src="index.html" />
-  <access origin="*" />
+  <access origin="https://scontent.xx.fbcdn.net/" />
   <preference name="SplashScreen" value="screen" />
   <preference name="windows-target-version" value="10.0" />
   <preference name="loadUrlTimeoutValue" value="700000" />
@@ -111,4 +111,14 @@
     <variable name="API_KEY_FOR_ANDROID" value="AIzaSyAZeYKjOrY3fhuqCIAVb_5HZot6oPIKo5E" />
   </plugin>
   <plugin name="cordova-plugin-vibration" spec="~2.1.5" />
+  <plugin name="cordova-plugin-facebook" spec="~0.2.2">
+    <variable name="FACEBOOK_APP_ID" value="732124110298144" />
+    <variable name="FACEBOOK_DISPLAY_NAME" value="BasketballOrganizer" />
+  </plugin>
+  <access />
+  <plugin name="cordova-plugin-file" spec="~4.3.3" />
+  <plugin name="cordova-plugin-geolocation" spec="~2.4.3" />
+  <plugin name="de.appplant.cordova.plugin.local-notification" spec="~0.8.4" src="https://github.com/katzer/cordova-plugin-local-notifications" />
+  <plugin name="cordova-plugin-app-event" spec="~1.2.0" />
+  <plugin name="cordova-plugin-device" spec="~1.1.6" />
 </widget>

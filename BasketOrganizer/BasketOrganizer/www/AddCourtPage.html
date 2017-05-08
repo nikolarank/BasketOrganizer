@@ -21,31 +21,41 @@ https://fonts.googleapis.com  https://ssl.gstatic.com 'unsafe-eval'; style-src '
     <link href="css/court.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="page-wrap">
+    <div style="color: #3b5998;" class="page-wrap">
         <div class="container header">
-            <h3>Add scort</h3>
+            <h3>Add court</h3>
         </div>
 
-        <div class="container">
+        <div class="container input-time-container" style="margin-bottom: 20px; width:100%; padding-left:25px; padding-right:25px;">
+            <h3 style="display: inline-block; width: 39%;">Court name</h3>
+            <div style="display:inline-block; width: 59%;">
+                <input type="text" class="form-control" id="courtName" placeholder="Court name">    
+            </div>
+        </div>
+        <!--<div style ="margin-top: 20px;" class="container">
             <input type="text" class="form-control" id="courtName" placeholder="Court name">
+        </div>-->
+        <div style ="margin-top: 20px;"class="container">
+            <p style="padding-left: 15px;">Hold marker for two seconds, then move it to your court position</p>
+           </div> 
+            <!-- prikaz mape-->
+            <div class="container" style="width:100%; padding-left:25px; padding-right:25px;">
+                <div style="width:100%;height:400px" id="map_canvas"></div>
+            </div>
+
+            <a style="margin-top: 5px; margin-left:25px;" class="btn btn-sm fa fa-arrows-alt" id="button"> Full Screen</a>
+            <div style="margin-top: 25px">
+                <div style="float:left;">
+                    <a class="btn-sm fa fa-camera-retro" aria-hidden="true" href="#" style="float: left; padding-left:20px; margin-bottom: 5px;" id="cameraTakePicture"> Take a picture</a>
+                    <a class="brn-sm fa fa-picture-o" aria-hidden="true" href="#" style="float: left; padding-left:20px; clear: left; margin-bottom: 10px;" id="cameraGetPicture"> Upload</a>
+                </div>
+                <img style="float: right; display:none; margin-right: 25px; margin-bottom:25px" id="myImage" alt="Slika terena" height="300" width="300">
+            </div>
+
+            <div class="container" style="margin-top: 40px; width:100%; padding-top:15px; padding-left:25px; padding-right:25px;">
+                <button class="btn btn-success btn-block" type="button" id="Insert">Insert</button>
+            </div>
         </div>
-
-        <!-- prikaz mape-->
-        <div class="container" style="width:100%; padding-left:25px; padding-right:25px;">
-            <div style="width:100%;height:400px" id="map_canvas"></div>
-        </div>
-
-        <button id="button">Full Screen</button>
-
-        <a href="#" style="padding-left:20px;" id="cameraTakePicture">Take a picture</a>
-
-        <img id="myImage" alt="Smiley face" height="300" width="300">
-
-        <div class="container" style="width:100%; padding-top:15px; padding-left:25px; padding-right:25px;">
-            <button class="btn btn-success btn-block" type="button" id="Insert">Insert</button>
-        </div>
-
-    </div>
 
     <footer class="site-footer" style="display:table;">
         <div class="row" style="display:table-cell; vertical-align:middle;">

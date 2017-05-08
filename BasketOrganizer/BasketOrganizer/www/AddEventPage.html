@@ -21,50 +21,64 @@
 
 </head>
 <body>
-    <div class="page-wrap">
+    <div style="color: #3b5998;" class="page-wrap">
 
         <div class="container header">
             <h3>Create event</h3>
         </div>
-        <div class="container">
+        <!--<div class="container">
             <input type="text" class="form-control" id="eventName" placeholder="Event name">
-        </div>
+        </div>-->
 
         <div class="container" style="width:100%; padding-top:15px;">
-            <div class="container input-date-container" style="width:50%; float:left;">
-                <input id="date" type="text" class="form-control" placeholder="Date" />
+            <div class="container input-date-container" style="width:100%;">
+                <h4 style="display: inline-block; width: 39%;">Date</h4>
+                <div style="display:inline-block; width: 59%;">
+                    <input id="date" type="date" class="form-control" placeholder="Date" />
+                </div>
             </div>
-            <div class="container input-time-container" style="width:50%; float:left;">
-                <input id="time" type="text" class="form-control" placeholder="Time" />
+            <div class="container input-time-container" style="width:100%;">
+                <h4 style="display: inline-block; width: 39%;">Time</h4>
+                <div style="display:inline-block; width: 59%;">
+                    <input id="time" type="time" class="form-control" placeholder="Time" />
+                </div>
             </div>
         </div>
 
-        <div class="container" style="width:100%; padding-top:15px;">
-            <input id="noplayers" type="text" class="form-control" placeholder="Number of players" />
+        <div class="container input-time-container" style="margin-bottom: 15px; width:100%; padding-left: 15px; padding-right:15px">
+            <h4 style="display: inline-block; width: 39%;">Num of players</h4>
+            <div style="display:inline-block; width: 59%;">
+                <input id="noplayers" type="number" min="2" max="20" class="form-control" placeholder="10" />
+            </div>
         </div>
 
-        <div class="container" style="width:100%; padding-top:15px;">
+        <!--<div class="container" style="width:100%; padding-top:15px;">
+            <input id="noplayers" type="number" min="2" max="20" class="form-control" placeholder="Number of players" />
+        </div>-->
+
+        <!--<div class="container" style="width:100%; padding-top:15px;">
             <input id="court" type="text" class="form-control" placeholder="Select existing court" />
-        </div>
+        </div>-->
 
         <div class="container" style="width:100%; padding-top:15px; padding-left:25px; padding-right:25px;">
 
 
-            <table id="tabela"></table>
+            <!--<table id="tabela"></table>-->
 
 
 
-            <p>or find your court on map</p>
+            <p>Find your court on map</p>
 
 
 
             <div style="width:100%;height:400px; float:left; display:inline-block" id="map_canvas"></div>
 
 
-            <button id="button">Full Screen</button>
+            <a style="margin-top: 5px;" class="btn btn-sm fa fa-arrows-alt" id="button"> Full Screen</a>
 
 
-            <button class="btn btn-success btn-block" type="button" id="Insert">Insert</button>
+
+            <button style="margin-top: 20px;" class="btn btn-success btn-block" type="button" id="Insert">Insert</button>
         </div>
 
     </div>
